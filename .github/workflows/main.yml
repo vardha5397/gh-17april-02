@@ -1,0 +1,20 @@
+name: nodeworkflow
+on:
+    push
+jobs:
+       TestJob:
+            runs-on: 'ubuntu-latest'
+            steps:
+                 - name: checkout the code
+                   uses: actions/checkout@v4
+                   with:
+                       fetch-depth: 0
+                 - name: Intsall node JS
+                   uses: actions/setup-node@v4
+                   with:
+                        node-version: '18'
+                 - name: Installing dependencies
+                   run: npm ci
+                 - name: Perform testing
+                   run: npm test
+            
