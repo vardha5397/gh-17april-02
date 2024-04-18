@@ -1,4 +1,4 @@
-name: nodeworkflow
+name: nodeJSworkflow
 on:
     push
 jobs:
@@ -17,4 +17,20 @@ jobs:
                    run: npm ci
                  - name: Perform testing
                    run: npm test
+       DeployJob:
+            needs: TestJob 
+            runs-on: 'ubuntu-latest'
+            steps:
+                 - name: checkout the code
+                   uses: actions/checkout@v4
+                   with:
+                        fetch-depth: 0
+                 - name: Intsall node JS
+                   uses: actions/setup-node@v4
+                   with:
+                         node-version: '18'
+                 - name: Installing Dependencies
+                   run: npm ci
+                 - name: Perform Build
+                   run: npm run build
             
