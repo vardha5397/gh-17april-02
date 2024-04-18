@@ -1,6 +1,7 @@
 name: nodeJSworkflow
 on:
-    push
+    [push,workflow_dispatch]
+    
 jobs:
        TestJob:
             runs-on: 'ubuntu-latest'
